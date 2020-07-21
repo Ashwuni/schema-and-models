@@ -37,3 +37,67 @@ g.save
 h = Book.new( title: "Catching Fire", year: 2009 )
 h.author = b
 h.save
+
+# Bob, bob@bob.com
+# Mary, mary@mary.com
+# Sue, sue@sue.com
+# Fred, fred@fred.com
+
+i = User.create(name: "Bob" , email: "bob@bob.com")
+j = User.create(name: "Mary" , email: "mary@mary.com")
+k = User.create(name: "Sue" , email: "sue@sue.com")
+l = User.create(name: "Fred" , email: "fred@fred.com")
+
+# Bob rated Ender’s Game a 5
+# Bob rated 1984 a -3
+# Mary rated Catching Fire a 3
+# Mary rated 1984 a 5
+# Sue rated The Hunger Games a 5
+
+m = Rating.new( rating: 5)
+m.book = e
+m.user = i
+m.save
+
+n = Rating.new( rating: -3)
+n.book = g
+n.user = i
+n.save
+
+o = Rating.new( rating: 3)
+o.book = h
+o.user = j
+o.save
+
+p = Rating.new( rating: 5)
+p.book = g
+p.user = j
+p.save
+
+q = Rating.new( rating: 5)
+q.book = f
+q.user = k
+q.save
+
+# On Bob’s list named "May the odds be in my favor": The Hunger Games and Catching Fire
+# On Sue’s list named "Gotta Read": 1984 and Ender’s Game
+# On Fred’s list name "Sue’s Favorite": Hunger Games
+
+r = Readinglist.new( name: "May the odds be in my favor" )
+r.user = i
+r.save
+
+s = Readinglist.new( name: "Gotta Read" )
+s.user = k
+s.save
+
+t = Readinglist.new( name: "Sue’s Favorite" )
+t.user = l
+t.save
+
+u = AddReferencesToBooksReadinglists.new()
+
+v = AddReferencesToBooksReadinglists.new()
+
+w = AddReferencesToBooksReadinglists.new()
+

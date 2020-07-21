@@ -85,14 +85,17 @@ q.save
 
 r = Readinglist.new( name: "May the odds be in my favor" )
 r.user = i
+r.books << [f, h]
 r.save
 
 s = Readinglist.new( name: "Gotta Read" )
 s.user = k
+s.books << [e, g]
 s.save
 
 t = Readinglist.new( name: "Sue’s Favorite" )
 t.user = l
+t.books << [f]
 t.save
 
 #WRONG SECTION

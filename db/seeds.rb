@@ -95,9 +95,57 @@ t = Readinglist.new( name: "Sue’s Favorite" )
 t.user = l
 t.save
 
-u = AddReferencesToBooksReadinglists.new()
+#WRONG SECTION
 
-v = AddReferencesToBooksReadinglists.new()
+# u = AddReferencesToBooksReadinglists.new()
+# u.readinglist_id = r.id
+# u.book_id = f.id
+# u.save
 
-w = AddReferencesToBooksReadinglists.new()
+# v = AddReferencesToBooksReadinglists.new()
+# v.readinglist_id = r.id
+# v.book_id = h
+# v.save
 
+# w = AddReferencesToBooksReadinglists.new()
+# w.readinglist_id = s.id
+# w.book_id = e
+# w.save
+
+# x = AddReferencesToBooksReadinglists.new()
+# x.readinglist_id = s.id
+# x.book_id = g
+# x.save
+
+# y = AddReferencesToBooksReadinglists.new()
+# y.readinglist_id = t.id
+# y.book_id = f
+# y.save
+
+#WRONG SECTION
+
+
+# u = AddReferencesToBooksReadinglists.new()
+# u.readinglists = r.readinglist_id
+# u.books = f.book_id
+# u.save
+
+# v = AddReferencesToBooksReadinglists.new()
+# v.readinglists = r.id
+# v.books = h
+# v.save
+
+# w = AddReferencesToBooksReadinglists.new()
+# w.readinglists = s.id
+# w.books = e
+# w.save
+
+# x = AddReferencesToBooksReadinglists.new()
+# x.readinglists = s.id
+# x.books = g
+# x.save
+
+# y = AddReferencesToBooksReadinglists.new()
+# y.readinglists = t.id
+# y.books = f
+# y.save

@@ -9,8 +9,9 @@ class Author < ApplicationRecord
       if ratings.count == 0
           return nil
       else 
-          max = ratings.where().maximum("rating")
-          return Book.where(rating: max)
+          return Rating.ratings.maximum
+#           max = ratings.maximum("rating")
+#           return Book.where(rating: max)
+      end
   end
-
 end

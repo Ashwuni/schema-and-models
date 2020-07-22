@@ -12,8 +12,18 @@ class User < ApplicationRecord
           return nil
       else
           max = ratings.maximum("rating")
-#           example = Rating.where(rating: max) #.select("book_id")
-          return Book.where(rating: max)
+           x = Book.where(rating: max)
+#           return Book.find_or_initialize_by(ids:x)
+#           
+          y = x.to_s
+           return Book.find_by id:y
+#               find_by_sql("SELECT * FROM books WHERE ('ratings = ?', max)
+#   INNER JOIN ratings ON books.id = ratings.book_id")
+          
+#           Book
+#   .select('*')
+#   .joins(:ratings)
+#   .where('ratings = ?', max)
       end
   end
     

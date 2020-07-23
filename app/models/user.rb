@@ -11,14 +11,16 @@ class User < ApplicationRecord
       if ratings.count == 0
           return nil
       else
-          max = ratings.maximum("rating")
-           x = Book.where(rating: max)
-           y = x.to_s.to_i
+          #max = ratings.maximum("rating")
+          # x = Book.where(rating: max)
+           #y = x.to_s.to_i
 #            return Book.find_by id:5
           
 #           return Book.find_or_initialize_by(ids:x)
-# #           
-          
+# #         
+          max_rat = ratings.maximum("rating") 
+          #return Book.find((ratings.find_by rating: max_rat).book_id).title #just to confirm the correct book name is returned
+          return Book.find((ratings.find_by rating: max_rat).book_id)
 #         return Book.find_by_sql("SELECT * FROM books
 #   JOIN ratings ON books.id = ratings.book_id WHERE (ratings.rating = 5)")
           
@@ -30,6 +32,7 @@ class User < ApplicationRecord
   end
     
    def books_in_common second_id
+       common_books = []
 # #       Add a method named books_in_common to the User model that takes 
 # #       as input the id of another user and returns an array of Book objects 
 # #       that both users have given positive ratings to. If the two users have 
@@ -42,14 +45,24 @@ class User < ApplicationRecord
           
 #        Client.connection.select_all("SELECT first_name, created_at FROM clients WHERE id = '1'").to_a
        
-       test = Book.connection.select_all("SELECT * FROM ratings WHERE rating>0 AND Rating.where('book_id = ?', 3)>0").to_a
+       #test = Book.connection.select_all("SELECT * FROM ratings WHERE rating>0 AND Rating.where('book_id = ?', 3)>0").to_a
 #        'book_id = ?', id
-       if test.length == 0
-           return Array.new
-       else
-           return test
+      # if test.length == 0
+          # return Array.new
+       #else
+           #return test
 #       temp = ratings.where(ratings>0, ratings.where(book_id: id)>0)
-       
+       #get arrays of book ids as easier to compare
+       second_user = User.find(second_id)
+       second = second_user.ratings.select(:book_id).where("rating > ?",0).to_a
+       first  = ratings.select(:book_id).where("rating > ?",0).to_a 
+       first.each do |f|
+           second.each do |s|
+               if f == s
+                   common_books << s
+               end
+           end   
+       end
+       return common_books
        end 
-   end
 end

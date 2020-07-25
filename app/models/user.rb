@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_many :readinglists
     has_many :ratings
+    has_many :reviews
 
 
   def favorite_book

@@ -7,9 +7,7 @@ class Author < ApplicationRecord
 #       If an author has no books rated, return nil.
           average_rating = 0
           liked_book = nil
-      #if ratings.count == 0
-          #return nil
-      #else 
+     
           #return Rating.ratings.maximum
 #           max = ratings.maximum("rating")
 #           return Book.where(rating: max)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_055026) do
+ActiveRecord::Schema.define(version: 2020_07_25_051546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 2020_07_21_055026) do
     t.index ["user_id"], name: "index_readinglists_on_user_id"
   end
 
+  create_table "reviews", id: false, force: :cascade do |t|
+    t.string "review", limit: 1024, null: false
+    t.bigint "book_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id", "user_id"], name: "index_reviews_on_book_id_and_user_id", unique: true
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", limit: 70, null: false
     t.string "email", limit: 255, null: false
@@ -68,4 +79,6 @@ ActiveRecord::Schema.define(version: 2020_07_21_055026) do
   add_foreign_key "ratings", "books"
   add_foreign_key "ratings", "users"
   add_foreign_key "readinglists", "users"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
 end
